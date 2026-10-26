@@ -6,18 +6,18 @@ Situação em 26/10/2026: nenhuma ADR decidida, nenhuma spec aprovada, nenhum c�
 
 ## Decisões da equipe (ADRs)
 
-Todas em `Proposta`. Enquanto não forem decididas, as specs seguem a recomendação (P8 da [constituição](constitution.md)); a seção "Impacto" de cada ADR diz o que muda se a escolha for outra.
+Todas em `Proposta`. Enquanto não forem decididas, as specs seguem a recomendação (P8 da [constituição](constitution.md)); a seção "Impacto" de cada ADR diz o que muda se a escolha for outra. Cada ADR tem uma issue no GitHub para discutir e registrar a decisão; quem decide fecha a issue no PR que atualiza a ADR.
 
-| ADR | Pergunta | Recomendação | Quem segue a recomendação hoje | Bloqueia |
-|---|---|---|---|---|
-| [0001](adr/0001-veredito-no-modo-grupo.md) | Quem dá o veredito no modo grupo? | A: narrador humano no grupo, IA só no solo | S01 Q3 (emenda 1 da S03), S03 Q1, S04 | S03, S08 |
-| [0002](adr/0002-contrato-da-porta-narrador.md) | A porta `Narrador` é síncrona? | A: porta só para a IA; o humano responde pelo caso de uso | S03 Q2, S04 Q4 | S03, S04, S07 |
-| [0003](adr/0003-framework-web.md) | Ktor ou Spring Boot? | A: Ktor, salvo se a maioria da equipe já dominar Spring | ninguém ainda | S06 |
-| [0004](adr/0004-banco-de-dados.md) | Qual banco? | A: PostgreSQL com Flyway | S04 Q5 (outbox na S09) | S09 |
-| [0005](adr/0005-provedor-de-llm.md) | Qual provedor de LLM e com que orçamento? | A: API comercial com saída estruturada, provedor escolhido pela bateria da S07 e teto de tokens por partida | ninguém ainda | S07, S08, S11 |
-| [0006](adr/0006-modo-offline.md) | O que é o modo "offline"? | A: um dispositivo, todos juntos | S05 Q1 | S05, UC1 |
-| [0007](adr/0007-identidade-e-autenticacao.md) | Como identificar e autenticar jogadores? | A: convidado com apelido; C se a equipe quiser estatísticas persistentes | S03 Q7 | S06, S12 |
-| [0008](adr/0008-stack-do-front-end.md) | Qual stack de front-end? | Decidir no começo da S10 | ninguém ainda | S10 |
+| ADR | Pergunta | Recomendação | Quem segue a recomendação hoje | Bloqueia | Issue |
+|---|---|---|---|---|---|
+| [0001](adr/0001-veredito-no-modo-grupo.md) | Quem dá o veredito no modo grupo? | A: narrador humano no grupo, IA só no solo | S01 Q3 (emenda 1 da S03), S03 Q1, S04 | S03, S08 | [#1](https://github.com/Dtma20/que-bug-e-esse/issues/1) |
+| [0002](adr/0002-contrato-da-porta-narrador.md) | A porta `Narrador` é síncrona? | A: porta só para a IA; o humano responde pelo caso de uso | S03 Q2, S04 Q4 | S03, S04, S07 | [#2](https://github.com/Dtma20/que-bug-e-esse/issues/2) |
+| [0003](adr/0003-framework-web.md) | Ktor ou Spring Boot? | A: Ktor, salvo se a maioria da equipe já dominar Spring | ninguém ainda | S06 | [#3](https://github.com/Dtma20/que-bug-e-esse/issues/3) |
+| [0004](adr/0004-banco-de-dados.md) | Qual banco? | A: PostgreSQL com Flyway | S04 Q5 (outbox na S09) | S09 | [#4](https://github.com/Dtma20/que-bug-e-esse/issues/4) |
+| [0005](adr/0005-provedor-de-llm.md) | Qual provedor de LLM e com que orçamento? | A: API comercial com saída estruturada, provedor escolhido pela bateria da S07 e teto de tokens por partida | ninguém ainda | S07, S08, S11 | [#5](https://github.com/Dtma20/que-bug-e-esse/issues/5) |
+| [0006](adr/0006-modo-offline.md) | O que é o modo "offline"? | A: um dispositivo, todos juntos | S05 Q1 | S05, UC1 | [#6](https://github.com/Dtma20/que-bug-e-esse/issues/6) |
+| [0007](adr/0007-identidade-e-autenticacao.md) | Como identificar e autenticar jogadores? | A: convidado com apelido; C se a equipe quiser estatísticas persistentes | S03 Q7 | S06, S12 | [#7](https://github.com/Dtma20/que-bug-e-esse/issues/7) |
+| [0008](adr/0008-stack-do-front-end.md) | Qual stack de front-end? | Decidir no começo da S10 | ninguém ainda | S10 | [#8](https://github.com/Dtma20/que-bug-e-esse/issues/8) |
 
 As que mais travam: 0001, 0002 e 0006, porque as specs do marco M1 (S00 a S05) já dependem delas. A 0007 trava a S06.
 
@@ -139,3 +139,4 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que ainda pedem 
 | Data | Mudança |
 |---|---|
 | 26/10/2026 | Primeira versão: ADRs 0001 a 0008, questões da S00 à S05, melhorias sem dono e tarefas manuais |
+| 26/10/2026 | Issues #1 a #8 abertas, uma por ADR |
