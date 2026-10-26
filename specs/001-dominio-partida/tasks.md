@@ -762,7 +762,7 @@ git commit -m "S01: testa invariantes por propriedade"
 
 **Files:**
 - Modify: `domain/build.gradle.kts`, `specs/001-dominio-partida/spec.md` (seção "Divergências")
-- Create: `docs/diagramas/estados-partida.mmd`, `docs/diagramas/classes-dominio.mmd`
+- Modify: `docs/diagramas/estados-partida.md`, `docs/diagramas/classes-dominio.md`, `docs/diagramas/README.md` (tabela "Pendências por diagrama")
 - Test: `test/DominioPuroTest.kt` (pacote `com.quebugesse.domain`)
 
 **Interfaces:**
@@ -806,11 +806,14 @@ kover {
 Run: `./gradlew :domain:koverVerify :domain:koverLog`
 Expected: `BUILD SUCCESSFUL` e linhas ≥ 90%. Abaixo disso, a linha descoberta indica o caso sem teste: escrever o teste, nunca excluir o código do filtro.
 
-- [ ] **Passo 4: gravar as fontes dos diagramas (P9)**
+- [ ] **Passo 4: atualizar as fontes dos diagramas (P9)**
 
-- `estados-partida.mmd` (`stateDiagram-v2`): `AGUARDANDO_INICIO`, `EM_ANDAMENTO` com os subestados `AGUARDANDO_PERGUNTA`, `PERGUNTA_PENDENTE` e `SOLUCAO_EM_AVALIACAO`, `RESOLVIDO` e `ABANDONADO`. Uma transição para cada "→" da tabela "Comportamento esperado" da spec, incluindo `cancelarPergunta` e `retirarProposta` (D4). Notas com H1, H2 (D7), H3, H5 estendida (D6) e R3.
-- `classes-dominio.mmd` (`classDiagram`): os tipos do "Modelo" do plan.md, com `modo` (D2), `Tentativa` e `tentativas` (D3), os 9 eventos sob `EventoDePartida`, que estende `DomainEvent` (D5), `Question.aberta` considerando o cancelamento (D8), `fase` (D9), `QuestionId` e `TentativaId` sobre `Int` (D10) e `agora: Instant` em todos os comandos (D1).
+Os dois arquivos já existem, com a transcrição dos PDFs de 14/10/2026. Trocar o bloco `mermaid` de cada um:
+
+- `estados-partida.md` (`stateDiagram-v2`): `AGUARDANDO_INICIO`, `EM_ANDAMENTO` com os subestados `AGUARDANDO_PERGUNTA`, `PERGUNTA_PENDENTE` e `SOLUCAO_EM_AVALIACAO`, `RESOLVIDO` e `ABANDONADO`. Uma transição para cada "→" da tabela "Comportamento esperado" da spec, incluindo `cancelarPergunta` e `retirarProposta` (D4). Notas com H1, H2 (D7), H3, H5 estendida (D6) e R3.
+- `classes-dominio.md` (`classDiagram`): os tipos do "Modelo" do plan.md, com `modo` (D2), `Tentativa` e `tentativas` (D3), os 9 eventos sob `EventoDePartida`, que estende `DomainEvent` (D5), `Question.aberta` considerando o cancelamento (D8), `fase` (D9), `QuestionId` e `TentativaId` sobre `Int` (D10) e `agora: Instant` em todos os comandos (D1).
 - Cada item marcado com um comentário `%% Dn`.
+- Em `docs/diagramas/README.md`, tirar da tabela "Pendências por diagrama" as linhas da S01 aplicadas e atualizar o campo "Estado" dos dois arquivos.
 
 Verificar: os dois arquivos abrem sem erro de sintaxe no preview Mermaid do editor (ou no `mmdc`, se já estiver instalado; não baixar nada só para isso).
 
@@ -829,7 +832,7 @@ Expected: `32`.
 - [ ] **Passo 7: commit**
 
 ```bash
-git add domain/build.gradle.kts domain/src/test/kotlin/com/quebugesse/domain/DominioPuroTest.kt docs/diagramas/estados-partida.mmd docs/diagramas/classes-dominio.mmd specs/001-dominio-partida/spec.md
+git add domain/build.gradle.kts domain/src/test/kotlin/com/quebugesse/domain/DominioPuroTest.kt docs/diagramas/estados-partida.md docs/diagramas/classes-dominio.md docs/diagramas/README.md specs/001-dominio-partida/spec.md
 git commit -m "S01: exige cobertura e pureza e atualiza diagramas"
 ```
 

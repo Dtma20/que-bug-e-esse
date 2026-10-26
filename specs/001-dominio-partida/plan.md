@@ -28,7 +28,7 @@ Spec: [spec.md](spec.md) · Tarefas: [tasks.md](tasks.md) · Constituição 1.0.
 | P6 Fakes | Não se aplica: a S01 não define portas |
 | P7 Camadas | `domain.gamesession` só importa `domain.shared` |
 | P8 ADR | Q1 a Q5 com decisão provisória registrada na spec |
-| P9 Diagramas | A tarefa 9 grava as fontes Mermaid com as divergências D1 a D10 |
+| P9 Diagramas | A tarefa 9 atualiza as fontes Mermaid de `docs/diagramas/` com as divergências D1 a D10 |
 | P10 Linguagem ubíqua | Nomes do diagrama mantidos; termos novos no glossário da spec |
 
 ## Decisões de projeto
@@ -185,8 +185,8 @@ domain/
     gamesession/InvariantesPropertyTest.kt
     DominioPuroTest.kt
 docs/diagramas/
-  estados-partida.mmd
-  classes-dominio.mmd
+  estados-partida.md
+  classes-dominio.md
 ```
 
 ## Estratégia de testes
@@ -202,10 +202,10 @@ docs/diagramas/
 | Risco | Mitigação |
 |---|---|
 | A equipe rejeita alguma decisão provisória (Q1 a Q5) | A spec lista os CAs afetados; cada regra mora numa guarda só |
-| Código e diagramas divergem | Tarefa 9 grava as fontes Mermaid antes de fechar a spec |
+| Código e diagramas divergem | Tarefa 9 atualiza as fontes Mermaid antes de fechar a spec |
 | Teste de propriedade lento ou difícil de reproduzir | 1000 sequências de até 50 comandos; seed impressa na falha |
 | A S00 ainda não existe | A tarefa 1 cria o mínimo do módulo `domain` |
 
 ## Fora deste plano
 
-Reconstrução da partida a partir do banco (`reconstituir`), versão para bloqueio otimista e serialização dos eventos ficam para S04 e S09.
+`GameSession.reconstituir` vem com a S03 (emenda 2), porque o repositório em memória precisa dela para guardar cópias. Versão para bloqueio otimista e serialização dos eventos ficam para a S06 (DTOs de evento) e a S09 (banco e outbox).

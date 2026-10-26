@@ -194,9 +194,11 @@ Todas têm decisão provisória para não travar a implementação. Se a equipe 
 |---|---|---|---|
 | Q1 | Quem pode abandonar (H2)? | Narrador sempre; investigador só no `SOLO`. No grupo, a saída de um investigador será "sair da partida" (S06) | 14, 15, 28 |
 | Q2 | Quem cancela pergunta ou retira proposta? | O autor do item ou o narrador | 21, 22, 23 |
-| Q3 | Quem aplica o veredito no grupo? (ADR-01) | O domínio não verifica autor no `aplicarVeredito`, como no diagrama. Se a ADR-01 decidir "narrador humano", o comando ganha `autor` e um CA novo | 10, 11, 12 |
+| Q3 | Quem aplica o veredito no grupo? ([ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md)) | O domínio não verifica autor no `aplicarVeredito`, como no diagrama. Se a ADR 0001 decidir "narrador humano", o comando ganha `autor` e um CA novo | 10, 11, 12 |
 | Q4 | Limite de texto | 1 a 500 code points depois de remover espaços das pontas | 18 |
 | Q5 | Regras extras de H5 | Narrador fora da lista de investigadores, sem repetidos, `SOLO` com exatamente um | 19, 20 |
+
+**Q3, atualização de 26/10/2026:** a [S03](../003-casos-de-uso-da-partida/spec.md) adota a opção A da [ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md), ainda em `Proposta`. Pela emenda 1 da S03, `aplicarVeredito` ganha `autor` e rejeita quem não é o narrador com `NAO_E_NARRADOR`, coberto pelo novo CA-33.
 
 ## Rastreabilidade
 

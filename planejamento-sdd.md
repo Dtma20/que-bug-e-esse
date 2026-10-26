@@ -67,7 +67,7 @@ docs/
     0001-veredito-no-modo-grupo.md
     0002-contrato-da-porta-narrador.md
     ...
-  diagramas/            # fontes .mmd/.puml + PDFs gerados
+  diagramas/            # fontes .md com bloco mermaid + PDFs gerados
 specs/
   001-dominio-partida/
     spec.md             # o quê e por quê: histórias, critérios Dado/Quando/Então
@@ -282,5 +282,5 @@ Estava nos rascunhos ("eventos distribuídos após persistência") e sumiu dos P
 
 1. Reunião curta da equipe para fechar ADR-01, ADR-02, ADR-06 e ADR-07. Elas bloqueiam S03 e S06.
 2. Atualizar estados, classes e casos de uso com M1 a M6 e M10 a M12, e passar os diagramas para fonte versionada (Mermaid ou PlantUML).
-3. Criar o repositório com `docs/constitution.md` e a spec S01 completa.
+3. ~~Criar o repositório com `docs/constitution.md` e a spec S01 completa.~~ Feito em 26/10/2026: repositório no GitHub, constituição, specs S00 a S05, as oito [ADRs](docs/adr/README.md) em `Proposta`, as fontes Mermaid em [docs/diagramas/](docs/diagramas/README.md) e o que falta decidir em [docs/pendencias.md](docs/pendencias.md).
 4. Implementar S00 e S01 com TDD; em seguida S02, S03 e S05 até o marco M1 (jogo inteiro no terminal).
