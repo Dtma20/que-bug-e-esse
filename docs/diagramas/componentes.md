@@ -3,30 +3,30 @@
 | Campo | Valor |
 |---|---|
 | Fonte original | [`diagramas/Diagrama_comp.pdf`](../../diagramas/Diagrama_comp.pdf), versão de 14/10/2026 |
-| Estado | Atualizado em 2026-11-24 com S00–S05, ADRs 0001–0009 (M1 concluído; S06–S09 especificadas) |
+| Estado | Atualizado em 2026-11-24 com S00–S10, ADRs 0001–0009 e marco M4 (S11 curadoria/IA e S12 estatísticas) |
 
 Círculo ligado por linha cheia = interface fornecida; seta tracejada até o círculo = interface requerida.
 
 ```mermaid
 flowchart TB
-    front["Front-end SPA<br/>TypeScript + Vite + React<br/>(Que-Bug-E-Esse/front · ADR 0008)"]
+    front["Front-end SPA<br/>TypeScript + Vite + React<br/>(Que-Bug-E-Esse/front · ADR 0008 · S10/S11)"]
     proxy["Proxy Reverso<br/>Nginx · HTTPS / WSS<br/>(M23)"]
     term["Terminal local<br/>(mesmo dispositivo · ADR 0006)"]
 
     subgraph back["«subsystem» Que-Bug-E-Esse/back · com.quebugesse"]
-        boot["«composition root»<br/>bootstrap (Main)<br/>monta adaptadores, seed, casos de uso e ouvintes"]
+        boot["«composition root»<br/>bootstrap (Main / ServidorHttp / AplicacaoCli)<br/>monta adaptadores, seed, casos de uso e ouvintes"]
 
         subgraph interfaces["Interfaces · depende só de application (P7)"]
-            rest["rest (Ktor REST · S06)<br/>+ validação de token convidado (ADR 0007)"]
+            rest["rest (Ktor REST · S06/S11/S12)<br/>partidas · salas · curadoria · perfil · histórico<br/>+ validação de token convidado (ADR 0007)"]
             ws["ws (Ktor WebSocket · S06)"]
             cli["cli (interfaces.cli · S05)"]
         end
 
-        comandos(("DTOs e casos de uso<br/>VisaoInvestigador / VisaoNarrador (P3)"))
+        comandos(("DTOs e casos de uso<br/>VisaoInvestigador / VisaoNarrador (P3)<br/>EnigmaCuradoriaDto (S11)"))
 
         subgraph aplicacao["Camada de Aplicação"]
-            uc["Casos de Uso (12 em S03 + salas/histórico em S06)<br/>IniciarPartida · FazerPergunta · ResponderPergunta · CancelarPergunta<br/>ResponderComIA · ProporSolucao · RetirarProposta · JulgarProposta<br/>AvaliarComIA · Abandonar · ConsultarPartida · RegistrarJogador"]
-            ouv["Ouvintes (application.ouvinte · S04)<br/>AoFazerPerguntaNoSolo · AoProporSolucaoNoSolo"]
+            uc["Casos de Uso (S03/S06/S11/S12)<br/>Partida: Iniciar · Perguntar · Responder · Cancelar · Propor · Retirar · Julgar · Abandonar<br/>Salas e consultas: CriarSala · EntrarNaSala · IniciarSala · ListarEnigmas · Histórico · Perfil<br/>Curadoria (S11): GerarEnigmaComIA · CadastrarManual · Revisar · Publicar · Arquivar · Listar"]
+            ouv["Ouvintes (application.ouvinte · S04/S12)<br/>AoFazerPerguntaNoSolo · AoProporSolucaoNoSolo<br/>AoEncerrarPartidaAtualizarEstatisticas (M17)"]
             auth["Emissão / verificação de token HMAC<br/>e códigos de sala (ADR 0007 · S06)"]
         end
 
@@ -43,13 +43,13 @@ flowchart TB
         end
 
         subgraph infra["Infraestrutura · implementa as portas do domínio"]
-            aiAdapt["«adapter» infrastructure.ai<br/>NarradorIaHttp · VerificadorDeSolucaoHttp (S07/S08)<br/>(fakes em M1 e na CI · P6)"]
+            aiAdapt["«adapter» infrastructure.ai<br/>NarradorIaHttp · VerificadorDeSolucaoHttp (S07/S08)<br/>GeradorDeEnigmasHttp (S11)<br/>(fakes na CI · P6)"]
             pers["«adapter» infrastructure.persistence<br/>memoria + seed (M1)<br/>sqlite + Flyway + WAL + outbox (S09 · ADR 0004)"]
             msg["«adapter» infrastructure.messaging<br/>PublicadorDeEventosEmMemoria (S04)<br/>+ difusão WebSocket por papel (S06)"]
         end
     end
 
-    aiSvc["Serviço de IA stateless<br/>Python + FastAPI (Que-Bug-E-Esse/ai · ADR 0009)<br/>POST /narrar · POST /verificar · GET /health"]
+    aiSvc["Serviço de IA stateless<br/>Python + FastAPI (Que-Bug-E-Esse/ai · ADR 0009)<br/>POST /narrar · POST /verificar · POST /gerar · GET /health"]
     llm(["Google Gemini API<br/>gemini-2.5-flash · JSON Schema<br/>(ADR 0005)"])
     db[("SQLite em arquivo<br/>WAL + Flyway + outbox<br/>(ADR 0004)")]
 
@@ -66,6 +66,8 @@ flowchart TB
     ws -.-> auth
 
     ouv -.-> uc
+    ouv -.-> pGSR
+    ouv -.-> pPR
     uc -.->|"«use»"| gs
     uc -.->|"«use»"| en
     uc -.->|"«use»"| pl
@@ -78,6 +80,7 @@ flowchart TB
 
     aiAdapt --- pNarrador
     aiAdapt --- pVerif
+    aiAdapt --- pER
     pers --- pGSR
     pers --- pER
     pers --- pPR
@@ -96,6 +99,8 @@ flowchart TB
 
 - **Sem `NarradorHumano` (ADR 0002 A, M2):** o adaptador `NarradorHumano` foi removido da camada `interfaces`. No modo grupo, o narrador humano envia comandos diretamente para `ResponderPergunta` e `JulgarProposta`. A porta `Narrador` é síncrona e usada apenas pela IA no modo solo (`ResponderComIA`).
 - **`VerificadorDeSolucao` só no solo (ADR 0001 A):** removido "(fornecedor a decidir)". No modo solo, `AvaliarComIA` chama `VerificadorDeSolucao` via `VerificadorDeSolucaoHttp`; no grupo, o narrador humano julga via `JulgarProposta`.
+- **Geração e curadoria de enigmas (S11, UC8/UC9, M19):** `GeradorDeEnigmasHttp` implementa `domain.enigma.port.GeradorDeEnigmas` chamando `POST /gerar` em `Que-Bug-E-Esse/ai`. Enigmas gerados por IA ou cadastrados manualmente nascem em `RASCUNHO` e passam pelas rotas `/api/curadoria/enigmas/*` (`revisar`, `publicar`, `arquivar`); `GET /api/enigmas` continua expondo somente `PUBLICADO` sem `solucaoCompleta`.
+- **Estatísticas por evento (S12, UC7, M17):** `AoEncerrarPartidaAtualizarEstatisticas` reage a `PartidaResolvida` e `PartidaAbandonada` publicados pós-persistência (H6), atualizando `Player.stats` dos investigadores humanos no `PlayerRepository` (ligado em `ServidorHttp` e `AplicacaoCli`) e refletido em `GET /api/perfil`.
 - **Sigilo da solução por papel (P3, M1):** substituída a nota antiga "solucaoCompleta não sai do domínio". A aplicação monta `VisaoInvestigador` (sem solução até estado terminal) e `VisaoNarrador` (com solução apenas para o narrador autenticado da partida).
 - **Três repositórios (ADR 0009 A, M23):** `Que-Bug-E-Esse/front` acessa exclusivamente `Que-Bug-E-Esse/back` (via proxy HTTPS/WSS em produção ou direto ao Ktor em desenvolvimento), nunca o serviço `Que-Bug-E-Esse/ai` nem o banco.
 - **Raiz de composição (M16, S05 D4):** o módulo `bootstrap` é o único que conhece todas as camadas e conecta adaptadores às portas.
