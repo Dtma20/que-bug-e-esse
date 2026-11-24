@@ -1,6 +1,6 @@
 # Constituição do projeto Que Bug é Esse?
 
-Versão 1.0.0 · Rascunho para aprovação da equipe · 25/10/2026
+Versão 1.0.0 · Aprovada · 2026-11-24
 
 Estas regras valem para toda spec, plano, tarefa e PR do projeto. Quando uma spec contradiz a constituição, vale a constituição até que uma ADR a emende (ver "Emendas").
 
@@ -98,3 +98,4 @@ Mudar esta constituição exige uma ADR e a aprovação da equipe. A versão seg
 | Versão | Data | Mudança |
 |---|---|---|
 | 1.0.0 | 25/10/2026 | Versão inicial, a partir de `planejamento-sdd.md` |
+| 1.0.0 | 2026-11-24 | Aprovada pela equipe (ADRs 0001 a 0009 aceitas) |

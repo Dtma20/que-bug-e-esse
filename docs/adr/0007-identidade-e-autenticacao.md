@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -41,7 +41,7 @@ A, ou C se a equipe quiser estatísticas persistentes no futuro.
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita:** jogador convidado com apelido + token assinado de sessão (sem cadastro, sem senha e sem dados pessoais) + código de sala para entrada no modo grupo (UC12). É a implementação mais simples para autenticar o autor de cada comando na S06 sem introduzir fluxo de contas ou escopo de LGPD.
 
 ## Impacto
 

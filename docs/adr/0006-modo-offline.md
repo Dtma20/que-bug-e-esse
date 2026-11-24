@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -41,7 +41,7 @@ A.
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita:** o modo "offline" é um jogo em grupo no mesmo dispositivo ("mesmo dispositivo"), sem rede, entregue pela CLI local da S05 sem nenhuma alteração no domínio.
 
 ## Impacto
 

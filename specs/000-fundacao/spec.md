@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S00 |
-| Status | Rascunho |
+| Status | Aprovada |
 | Depende de | — |
 | Casos de uso | — |
 | Diagramas de origem | `diagrama_pacotes.pdf` (camadas e pacotes), `Diagrama_comp.pdf` (camadas) |

@@ -20,15 +20,16 @@ Enquanto um ADR está em `Proposta`, as specs seguem a decisão provisória que 
 
 ## Índice
 
-| ADR | Pergunta | Status | Recomendação | Bloqueia | Issue |
+| ADR | Pergunta | Status | Decisão | Bloqueia | Issue |
 |---|---|---|---|---|---|
-| [0001](0001-veredito-no-modo-grupo.md) | Quem dá o veredito no modo grupo? | Proposta | Narrador humano no grupo, IA só no solo | S03, S08 | [#1](https://github.com/Dtma20/que-bug-e-esse/issues/1) |
-| [0002](0002-contrato-da-porta-narrador.md) | A porta `Narrador` é síncrona? | Proposta | Porta só para a IA; o humano responde pelo caso de uso | S03, S04, S07 | [#2](https://github.com/Dtma20/que-bug-e-esse/issues/2) |
-| [0003](0003-framework-web.md) | Ktor ou Spring Boot? | Proposta | Ktor, salvo se a equipe dominar Spring | S06 | [#3](https://github.com/Dtma20/que-bug-e-esse/issues/3) |
-| [0004](0004-banco-de-dados.md) | Qual banco? | Proposta | PostgreSQL com Flyway | S09 | [#4](https://github.com/Dtma20/que-bug-e-esse/issues/4) |
-| [0005](0005-provedor-de-llm.md) | Qual provedor de LLM e com que orçamento? | Proposta | Escolher pela bateria de referência da S07 | S07, S08, S11 | [#5](https://github.com/Dtma20/que-bug-e-esse/issues/5) |
-| [0006](0006-modo-offline.md) | O que é o modo "offline"? | Proposta | Um dispositivo, todos juntos, sem rede | S05, UC1 | [#6](https://github.com/Dtma20/que-bug-e-esse/issues/6) |
-| [0007](0007-identidade-e-autenticacao.md) | Como identificar e autenticar jogadores? | Proposta | Convidado com apelido, código de sala e token por sessão | S06, S12 | [#7](https://github.com/Dtma20/que-bug-e-esse/issues/7) |
-| [0008](0008-stack-do-front-end.md) | Qual stack de front-end? | Proposta | Decidir na S10 | S10 | [#8](https://github.com/Dtma20/que-bug-e-esse/issues/8) |
+| [0001](0001-veredito-no-modo-grupo.md) | Quem dá o veredito no modo grupo? | Aceita | Opção A: narrador humano no grupo (`JulgarProposta`), IA só no solo (`AvaliarComIA`) | S03, S08 | [#1](https://github.com/Dtma20/que-bug-e-esse/issues/1) |
+| [0002](0002-contrato-da-porta-narrador.md) | A porta `Narrador` é síncrona? | Aceita | Opção A: porta síncrona só para a IA; humano responde direto via `ResponderPergunta` | S03, S04, S07 | [#2](https://github.com/Dtma20/que-bug-e-esse/issues/2) |
+| [0003](0003-framework-web.md) | Ktor ou Spring Boot? | Aceita | Opção A: Ktor (REST + WebSocket nativo, composição explícita no `bootstrap`) | S06 | [#3](https://github.com/Dtma20/que-bug-e-esse/issues/3) |
+| [0004](0004-banco-de-dados.md) | Qual banco? | Aceita | Opção B: SQLite em arquivo com Flyway, JDBC, modo WAL e bloqueio otimista | S09 | [#4](https://github.com/Dtma20/que-bug-e-esse/issues/4) |
+| [0005](0005-provedor-de-llm.md) | Qual provedor de LLM e com que orçamento? | Aceita | Opção A: API comercial com saída estruturada (Gemini `gemini-2.5-flash`), teto US$ 10/mês e 10.000 tokens/partida | S07, S08, S11 | [#5](https://github.com/Dtma20/que-bug-e-esse/issues/5) |
+| [0006](0006-modo-offline.md) | O que é o modo "offline"? | Aceita | Opção A: um dispositivo, todos juntos, sem rede ("mesmo dispositivo") | S05, UC1 | [#6](https://github.com/Dtma20/que-bug-e-esse/issues/6) |
+| [0007](0007-identidade-e-autenticacao.md) | Como identificar e autenticar jogadores? | Aceita | Opção A: convidado com apelido, código de sala e token assinado por sessão | S06, S12 | [#7](https://github.com/Dtma20/que-bug-e-esse/issues/7) |
+| [0008](0008-stack-do-front-end.md) | Qual stack de front-end? | Aceita | Opção A: SPA mínima em TypeScript + Vite + React (`fetch` e `WebSocket` nativos) | S10 | [#8](https://github.com/Dtma20/que-bug-e-esse/issues/8) |
+| [0009](0009-divisao-de-repositorios.md) | Como dividir a arquitetura nos três repositórios da organização? | Aceita | Opção A: `back` (núcleo Kotlin/JVM + API + SDD), `ai` (HTTP JSON stateless `/narrar` e `/verificar`), `front` (SPA mínima) | S00, S06, S07, S08, S10 | — |
 
 Modelo para ADR nova: [docs/modelos/adr.md](../modelos/adr.md). Numeração: o próximo número livre, com quatro dígitos.

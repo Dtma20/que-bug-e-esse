@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -37,7 +37,7 @@ A.
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção B aceita:** **SQLite em arquivo com migrações Flyway**, acessado via JDBC com modo WAL (`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000`), bloqueio otimista por coluna `versao` (M8) e tabela de outbox na mesma transação (H6/S09). É a opção mais simples de implementar, testar e operar (zero servidor externo, sem exigência de Docker/Testcontainers nos testes) e mantém o mesmo contrato JDBC/Flyway da opção A, permitindo migrar para PostgreSQL apenas dentro de `infrastructure.persistence` se o projeto vier a escalar para múltiplas instâncias. Até a S09, seguem os repositórios em memória.
 
 ## Impacto
 
