@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S03 |
-| Status | Aprovada |
+| Status | Concluída (`Que-Bug-E-Esse/back#1`) |
 | Depende de | S01 (`GameSession`), S02 (`Enigma`, `Player`, repositórios em memória e seed) |
 | Casos de uso | UC2 Selecionar enigma (sorteio e "já jogados"), UC3 Iniciar partida, UC4 Fazer pergunta, UC5 Responder pergunta, UC6 Propor solução, UC10 Jogar sozinho (caminho da IA, com fakes), UC11 Abandonar partida |
 | Diagramas de origem | `diagrama_seq_iniciar.pdf`, `diagrama_seq_jogar.pdf`, `Diagrama_comp.pdf` (camada de aplicação e portas) |

@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S00 |
-| Status | Aprovada |
+| Status | Concluída (`Que-Bug-E-Esse/back#1`) |
 | Depende de | — |
 | Casos de uso | — |
 | Diagramas de origem | `diagrama_pacotes.pdf` (camadas e pacotes), `Diagrama_comp.pdf` (camadas) |
