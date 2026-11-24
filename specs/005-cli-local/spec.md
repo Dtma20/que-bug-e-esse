@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S05 |
-| Status | Aprovada |
+| Status | Concluída (`Que-Bug-E-Esse/back#1`) |
 | Depende de | S03 (casos de uso, DTOs e `CodigoErro`), S04 (`FALHA_AO_SALVAR` e o publicador que o `bootstrap` liga), S02 (repositórios em memória e seed) |
 | Casos de uso | UC1 Escolher modo de jogo (só o grupo no mesmo dispositivo), UC2 Selecionar enigma, UC3 Iniciar partida, UC4 Fazer pergunta, UC5 Responder pergunta, UC6 Propor solução, UC11 Abandonar partida |
 | Diagramas de origem | `Diagrama_imp.pdf` ("Terminal do Usuário / CLI" e a nota "Cliente SSH: jogar via terminal"), `diagrama_pacotes.pdf` (`interfaces`), `diagrama_casos.pdf` (UC1 "offline") |

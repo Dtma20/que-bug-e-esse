@@ -2,7 +2,7 @@
 
 O que depende da equipe ou de alguém fora do código: decisões, aprovações, questões das specs e configurações manuais. Quem fecha um item atualiza a linha aqui no mesmo PR (passo 4 do [fluxo das ADRs](adr/README.md)).
 
-Situação em 2026-11-24: ADRs 0001 a 0009 aceitas pela opção mais simples, Constituição 1.0.0 e specs S00 a S05 aprovadas, questões Q das specs S00–S05 e melhorias M10–M24 decididas; restam a implementação do marco M1 e as tarefas manuais de infraestrutura/repositório.
+Situação em 2026-11-24: ADRs 0001 a 0009 aceitas pela opção mais simples, Constituição 1.0.0 aprovada, marco M1 (S00 a S05) concluído em `Que-Bug-E-Esse/back#1` (branch `feat/marco-m1`, 208 testes, 97,64% de cobertura Kover), entregas iniciais abertas em `Que-Bug-E-Esse/ai#1` (70 testes) e `Que-Bug-E-Esse/front#1` (10 testes + build), oito diagramas Mermaid sincronizados em [docs/diagramas/](diagramas/README.md) e specs S06, S07/S08 e S09 escritas e aprovadas; restam a implementação dos marcos M2/M3 e as tarefas manuais de infraestrutura/repositório.
 
 ## Decisões da equipe (ADRs)
 
@@ -25,21 +25,27 @@ Todas as ADRs 0001 a 0009 foram aceitas em 2026-11-24 pela opção mais simples 
 | Documento | Status | Plano e tarefas | Observação |
 |---|---|---|---|
 | [Constituição](constitution.md) 1.0.0 | Aprovada | — | Mudança depois de aprovada só por ADR |
-| [S00 Fundação](../specs/000-fundacao/spec.md) | Aprovada | Escritos | Primeira a implementar (`Que-Bug-E-Esse/back`) |
-| [S01 Domínio da partida](../specs/001-dominio-partida/spec.md) | Aprovada | Escritos | Recebe as emendas 1 e 2 da S03 (`aplicarVeredito` com autor, `reconstituir`) |
-| [S02 Catálogo e jogador](../specs/002-catalogo-e-jogador/spec.md) | Aprovada | Escritos | Pode andar junto com a S01 |
-| [S03 Casos de uso da partida](../specs/003-casos-de-uso-da-partida/spec.md) | Aprovada | Escritos | Segue ADRs 0001 A, 0002 A e 0007 A |
-| [S04 Eventos depois de persistir](../specs/004-eventos-apos-persistir/spec.md) | Aprovada | Escritos | Emendas 1 e 2 à S03; outbox em SQLite na S09 (ADR 0004 B) |
-| [S05 CLI local](../specs/005-cli-local/spec.md) | Aprovada | Escritos | Fecha o marco M1 (ADR 0006 A) |
+| [S00 Fundação](../specs/000-fundacao/spec.md) | Concluída | Escritos | Implementada em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
+| [S01 Domínio da partida](../specs/001-dominio-partida/spec.md) | Concluída | Escritos | Implementada com emendas 1 e 2 da S03 em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
+| [S02 Catálogo e jogador](../specs/002-catalogo-e-jogador/spec.md) | Concluída | Escritos | Implementada com `testFixtures` e seed em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
+| [S03 Casos de uso da partida](../specs/003-casos-de-uso-da-partida/spec.md) | Concluída | Escritos | Implementada seguindo ADRs 0001 A, 0002 A e 0007 A em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
+| [S04 Eventos depois de persistir](../specs/004-eventos-apos-persistir/spec.md) | Concluída | Escritos | Implementada com emendas 1 e 2 à S03 em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`); outbox SQLite na S09 |
+| [S05 CLI local](../specs/005-cli-local/spec.md) | Concluída | Escritos | Fecha o marco M1 (ADR 0006 A) em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
+| [S06 API Ktor, salas e identidade](../specs/006-api-ktor-salas/spec.md) | Aprovada | Ainda não escritos | REST + WebSocket, códigos de sala (UC12), tokens HMAC (ADR 0007 A), sigilo P3; consumida por `Que-Bug-E-Esse/front#1` |
+| [S07/S08 Integração com o serviço de IA](../specs/007-008-integracao-ia/spec.md) | Aprovada | Ainda não escritos | Adaptadores HTTP `NarradorIaHttp` e `VerificadorDeSolucaoHttp` para `Que-Bug-E-Esse/ai#1` (`/narrar`, `/verificar`), H4, P3 e M7 |
+| [S09 Persistência em SQLite](../specs/009-persistencia-sqlite/spec.md) | Aprovada | Ainda não escritos | SQLite WAL, Flyway, bloqueio otimista `versao` (M8), `eventos_outbox` (H6) e paridade de contrato (`testFixtures`) |
 
 Implementação (cada spec marca a sua no PR que a conclui):
 
-- [ ] S00 implementada
-- [ ] S01 implementada
-- [ ] S02 implementada
-- [ ] S03 implementada
-- [ ] S04 implementada
-- [ ] S05 implementada (marco M1: jogo inteiro no terminal)
+- [x] S00 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
+- [x] S01 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
+- [x] S02 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
+- [x] S03 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
+- [x] S04 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
+- [x] S05 implementada (marco M1: jogo inteiro no terminal — `Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`; serviço de IA e SPA inicial também abertos em `Que-Bug-E-Esse/ai#1` e `Que-Bug-E-Esse/front#1`)
+- [ ] S06 implementada (API Ktor REST + WebSocket, salas e tokens)
+- [ ] S07/S08 implementada (adaptadores HTTP `NarradorIaHttp` e `VerificadorDeSolucaoHttp`)
+- [ ] S09 implementada (persistência SQLite + WAL + Flyway + outbox)
 
 ## Questões das specs (resolvidas)
 
@@ -115,9 +121,9 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que aguardavam d
 
 | M | Assunto | Onde está | Status | Decisão |
 |---|---|---|---|---|
-| M10 | Caso de uso "Abandonar partida" e quem pode abandonar | S01 Q1, S03 (`Abandonar`) | Resolvida | Confirmada H2 (narrador sempre; investigador só no `SOLO`); acrescentar UC11 ao diagrama de casos de uso na próxima atualização dos diagramas |
-| M12 | Quem inicia no solo | S03 Q6 | Resolvida | Confirmado: o próprio investigador inicia no solo; ligar Investigador ao UC3 na próxima atualização dos diagramas |
-| M13 | `«extend»` entre UC7 e UC6 | Diagrama de casos de uso | Resolvida | Remover a relação `«extend»` entre UC7 e UC6 na próxima atualização dos diagramas (UC7 já se liga diretamente ao Investigador) |
+| M10 | Caso de uso "Abandonar partida" e quem pode abandonar | S01 Q1, S03 (`Abandonar`) | Resolvida | Confirmada H2 (narrador sempre; investigador só no `SOLO`); UC11 aplicado em [casos-de-uso.md](diagramas/casos-de-uso.md) |
+| M12 | Quem inicia no solo | S03 Q6 | Resolvida | Confirmado: o próprio investigador inicia no solo; associação Investigador–UC3 aplicada em [casos-de-uso.md](diagramas/casos-de-uso.md) |
+| M13 | `«extend»` entre UC7 e UC6 | Diagrama de casos de uso | Resolvida | Relação `«extend»` entre UC7 e UC6 removida em [casos-de-uso.md](diagramas/casos-de-uso.md) |
 | M15 | Acesso SSH sem adaptador | S05 D1 e D2 | Resolvida | Confirmado: não haverá acesso SSH em produção; apenas CLI local (`interfaces.cli`) |
 | M18 | Critério de seleção e "já jogados" | S02 Q3, S03 Q5, S05 Q5 | Resolvida | Confirmada a regra provisória (filtro por categoria/dificuldade, excluindo enigmas já jogados por algum investigador da partida nova) |
 | M22 | Veredito só booleano | S01, S08, ADR 0009 | Resolvida | Manter veredito estritamente booleano (`CORRETA` / `INCORRETA`), sem retorno "quase", mantendo domínio e `POST /verificar` simples |
@@ -141,3 +147,4 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que aguardavam d
 | 26/10/2026 | Issues #1 a #8 abertas, uma por ADR |
 | 2026-11-24 | ADRs 0001 a 0008 aceitas, ADR 0009 criada e aceita, Constituição 1.0.0 e specs S00 a S05 aprovadas, questões Q e melhorias M10–M24 resolvidas pela opção mais simples |
 | 2026-11-24 | Planos (`plan.md`) e tarefas (`tasks.md`) das specs S03, S04 e S05 escritos |
+| 2026-11-24 | Marco M1 (S00–S05) concluído em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`), entregas iniciais em `Que-Bug-E-Esse/ai#1` e `Que-Bug-E-Esse/front#1`, diagramas Mermaid sincronizados e specs S06, S07/S08 e S09 aprovadas |

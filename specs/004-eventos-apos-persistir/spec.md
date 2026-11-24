@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S04 |
-| Status | Aprovada |
+| Status | Concluída (`Que-Bug-E-Esse/back#1`) |
 | Depende de | S03 (casos de uso, `GameSessionRepository`, `ResponderComIA`, `AvaliarComIA`, `CodigoErro`), S01 (`puxarEventos()` e os nove eventos de `EventoDePartida`) |
 | Casos de uso | Nenhum novo. Fecha o UC10 Jogar sozinho: a resposta e o veredito da IA passam a ser disparados pelos eventos `PerguntaFeita` e `SolucaoProposta` |
 | Diagramas de origem | `Diagrama_comp.pdf` (porta "difusão de DomainEvent" e adaptador `messaging`), `diagrama_seq_jogar.pdf` (passo 04 e nota "salva ao final"), `Diagrama_imp.pdf` (`WebSocket / SSE (messaging)`) |
