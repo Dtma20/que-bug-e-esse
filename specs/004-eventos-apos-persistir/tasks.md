@@ -45,7 +45,7 @@ Convenções de caminho:
 - Create: `infra-test/messaging/PublicadorDeEventosEmMemoriaTest.kt`
 
 **Interfaces:**
-- Produz: `PublicadorDeEventos`, `OuvinteDeEvento`, `RegistroDeFalhaDeEvento`, `PublicadorDeEventosEmMemoria`.
+- Produz: `OuvinteDeEvento` e `PublicadorDeEventos` (em `domain.shared.port`); `RegistroDeFalhaDeEvento` e `PublicadorDeEventosEmMemoria` (em `infrastructure.messaging`).
 
 - [ ] **Passo 1: criar a porta e escrever `PublicadorDeEventosEmMemoriaTest.kt` (vermelho)**
   - `CA-05`: ouvintes O1, O2 (lança exceção), O3 → O1 e O3 recebem, registro de falhas anota `(evento, O2, excecao)`, `publicar` não lança.

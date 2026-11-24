@@ -38,7 +38,7 @@ A S05 fecha o marco M1 (jogo inteiro no terminal no mesmo dispositivo, sem rede 
 
 **DP2. `CasosDeUsoCli` agrupa os 10 casos de uso do modo grupo (CL12).** Exclui deliberadamente `ResponderComIA` e `AvaliarComIA` do tipo injetado na CLI, tornando impossível chamá-los por engano no modo grupo local.
 
-**DP3. Normalização determinística via `java.text.Normalizer` (CL3).** `normalizar(texto)` faz `Normalizer.normalize(texto.trim(), NFD)`, remove marcas diacríticas (`\p{Mn}+`), passa para `lowercase(Locale.ROOT)` e troca sequências de espaços/hífens por `_`. Assim `" Gestão de projeto "` e `"gestao-projeto"` normalizam ambos para `"gestao_projeto"`, e `"MÉDIA"` / `"FÁCIL"` / `"Não"` batem exatamente com as tabelas da spec (CA-02, CA-03, CA-07).
+**DP3. Normalização determinística via `java.text.Normalizer` (CL3).** `normalizar(texto)` faz `Normalizer.normalize(texto.trim(), NFD)`, remove marcas diacríticas (`\p{Mn}+`), passa para `lowercase(Locale.ROOT)` e troca sequências de espaços/hífens por `_`. Assim `" Gestão de projeto "` normaliza para `"gestao_de_projeto"` (nome de exibição normalizado) e `"gestao-projeto"` normaliza para `"gestao_projeto"` (nome do enum normalizado); `Mensagens.parseCategoria` aceita ambas as formas e devolve `CategoriaDto.GESTAO_PROJETO`, assim como `"MÉDIA"`, `"FÁCIL"` e `"Não"` batem com as tabelas da spec (CL3, CA-02, CA-03, CA-07).
 
 **DP4. `Mensagens.kt` com `when` exaustivo (CA-14).** `mensagem(codigo: CodigoErro)` e `mensagem(codigo: CodigoCli, opcoes: String)` usam `when` sem `else`, cobrindo exatamente os 22 valores de `CodigoErro` (S03 + `FALHA_AO_SALVAR` da S04) e os 3 valores de `CodigoCli`. `MensagensTest` garante que cada valor produz texto não vazio e único.
 
@@ -48,7 +48,7 @@ A S05 fecha o marco M1 (jogo inteiro no terminal no mesmo dispositivo, sem rede 
 
 **DP7. Leitura segura de `perguntaAberta` pela visão mais recente (CL8).** Para `responder` e `cancelar`, a CLI valida primeiro o argumento (`sim`/`nao`/`irrelevante` no caso de `responder`, dando `ARGUMENTO_INVALIDO` antes de olhar a pergunta), consulta a visão atual para localizar a pergunta aberta (`resposta == null && !cancelada`) e, se não houver, imprime `SEM_PERGUNTA_ABERTA` sem chamar o caso de uso (CA-09, CA-15).
 
-**DP8. `AplicacaoCli` no `bootstrap` para testes de ponta a ponta.** O módulo `bootstrap` expõe `criarCliLocal(entrada, saida, clock, geradorDeIds, sorteador)` com os adaptadores reais em memória + `SeedInicial` + `PublicadorDeEventosEmMemoria`. O `main()` apenas chama essa fábrica com `Clock.systemUTC()`, `GeradorDeIdsUuid` e `SorteadorAleatorio`.
+**DP8. `AplicacaoCli` no `bootstrap` para testes de ponta a ponta.** O módulo `bootstrap` expõe `AplicacaoCli.criar(entrada, saida, clock, geradorDeIds, sorteador)` com os adaptadores reais em memória + `SeedInicial` + `PublicadorDeEventosEmMemoria`. O `main()` apenas chama essa fábrica com `Clock.systemUTC()`, `GeradorDeIdsUuid` e `SorteadorAleatorio`.
 
 ## Modelo
 

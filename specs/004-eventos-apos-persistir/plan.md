@@ -38,7 +38,7 @@ A S04 fecha a regra H6 ("eventos só saem depois de persistir") e automatiza o m
 
 **DP2. Registro thread-safe sem bloqueio na entrega.** Os ouvintes ficam numa `CopyOnWriteArrayList<OuvinteDeEvento>` (RNF3). Registrar ouvintes após a construção quebra o ciclo de dependências no `bootstrap`: cria-se o publicador, injeta-se nos casos de uso, criam-se os ouvintes com esses casos de uso e registram-se os ouvintes.
 
-**DP3. Isolamento total de falhas (EV1).** Cada invocação `ouvinte(evento)` fica dentro de `try / catch (e: Throwable)` (ou `Exception` + `AssertionError` fora de `VirtualMachineError`), repassando `(evento, ouvinte, erro)` ao callback `aoFalhar`. O laço segue para o próximo ouvinte e o próximo evento, e `publicar` nunca lança por falha de ouvinte.
+**DP3. Isolamento total de falhas (EV1).** Cada invocação `ouvinte(evento)` fica dentro de `try / catch (e: Exception)` (sem engolir `Error` fatal da JVM como `OutOfMemoryError`), repassando `(evento, ouvinte, erro)` ao callback `aoFalhar`. O laço segue para o próximo ouvinte e o próximo evento, e `publicar` nunca lança por falha de ouvinte.
 
 **DP4. Fluxo único `salvar` → `publicar` → reler (H6, EV5).** Um auxiliar interno em `application.usecase` executa:
 1. `try { partidas.salvar(partida) } catch (_: Exception) { return Resultado.Erro(CodigoErro.FALHA_AO_SALVAR) }`
@@ -54,13 +54,14 @@ A S04 fecha a regra H6 ("eventos só saem depois de persistir") e automatiza o m
 
 ```kotlin
 // com.quebugesse.domain.shared.port
+typealias OuvinteDeEvento = (DomainEvent) -> Unit
+
 interface PublicadorDeEventos {
     fun publicar(eventos: List<DomainEvent>)
 }
 
 // com.quebugesse.infrastructure.messaging
-typealias OuvinteDeEvento = (DomainEvent) -> Unit
-typealias RegistroDeFalhaDeEvento = (evento: DomainEvent, ouvinte: OuvinteDeEvento, erro: Throwable) -> Unit
+typealias RegistroDeFalhaDeEvento = (evento: DomainEvent, ouvinte: OuvinteDeEvento, erro: Exception) -> Unit
 
 class PublicadorDeEventosEmMemoria(
     private val aoFalhar: RegistroDeFalhaDeEvento = { _, _, _ -> },
