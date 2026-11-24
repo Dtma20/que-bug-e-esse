@@ -9,7 +9,7 @@
 | Diagramas de origem | `Diagrama_imp.pdf` ("Terminal do Usuário / CLI" e a nota "Cliente SSH: jogar via terminal"), `diagrama_pacotes.pdf` (`interfaces`), `diagrama_casos.pdf` (UC1 "offline") |
 | Decisões que assume | [ADR 0006](../../docs/adr/0006-modo-offline.md), opção A, `Aceita`: "offline" é o grupo reunido num só dispositivo |
 | Melhorias incorporadas | M14 (offline), M15 (`interfaces.cli` local, sem SSH) e M16 (`main` no `bootstrap`) do [planejamento](../../planejamento-sdd.md); fecha o marco M1 |
-| Plano | Plano e tarefas: ainda não escritos |
+| Plano | [plan.md](plan.md) · Tarefas: [tasks.md](tasks.md) |
 
 ## Contexto
 

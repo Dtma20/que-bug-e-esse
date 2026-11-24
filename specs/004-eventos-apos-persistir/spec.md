@@ -9,7 +9,7 @@
 | Diagramas de origem | `Diagrama_comp.pdf` (porta "difusão de DomainEvent" e adaptador `messaging`), `diagrama_seq_jogar.pdf` (passo 04 e nota "salva ao final"), `Diagrama_imp.pdf` (`WebSocket / SSE (messaging)`) |
 | Decisões que assume | [ADR 0002](../../docs/adr/0002-contrato-da-porta-narrador.md) e [ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md), opção A das duas, como na S03; [ADR 0004](../../docs/adr/0004-banco-de-dados.md) (opção B, SQLite) só para registrar que o outbox fica na S09. Todas `Aceita` |
 | Melhorias incorporadas | M9 (recuperar H6), M2 (lado do solo) e o ponto de extensão que a M17 vai usar na S12, do [planejamento](../../planejamento-sdd.md) |
-| Plano | Plano e tarefas: ainda não escritos |
+| Plano | [plan.md](plan.md) · Tarefas: [tasks.md](tasks.md) |
 
 ## Contexto
 

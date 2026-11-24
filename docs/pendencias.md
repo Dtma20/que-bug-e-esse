@@ -28,9 +28,9 @@ Todas as ADRs 0001 a 0009 foram aceitas em 2026-11-24 pela opção mais simples 
 | [S00 Fundação](../specs/000-fundacao/spec.md) | Aprovada | Escritos | Primeira a implementar (`Que-Bug-E-Esse/back`) |
 | [S01 Domínio da partida](../specs/001-dominio-partida/spec.md) | Aprovada | Escritos | Recebe as emendas 1 e 2 da S03 (`aplicarVeredito` com autor, `reconstituir`) |
 | [S02 Catálogo e jogador](../specs/002-catalogo-e-jogador/spec.md) | Aprovada | Escritos | Pode andar junto com a S01 |
-| [S03 Casos de uso da partida](../specs/003-casos-de-uso-da-partida/spec.md) | Aprovada | A escrever | Segue ADRs 0001 A, 0002 A e 0007 A |
-| [S04 Eventos depois de persistir](../specs/004-eventos-apos-persistir/spec.md) | Aprovada | A escrever | Emendas 1 e 2 à S03; outbox em SQLite na S09 (ADR 0004 B) |
-| [S05 CLI local](../specs/005-cli-local/spec.md) | Aprovada | A escrever | Fecha o marco M1 (ADR 0006 A) |
+| [S03 Casos de uso da partida](../specs/003-casos-de-uso-da-partida/spec.md) | Aprovada | Escritos | Segue ADRs 0001 A, 0002 A e 0007 A |
+| [S04 Eventos depois de persistir](../specs/004-eventos-apos-persistir/spec.md) | Aprovada | Escritos | Emendas 1 e 2 à S03; outbox em SQLite na S09 (ADR 0004 B) |
+| [S05 CLI local](../specs/005-cli-local/spec.md) | Aprovada | Escritos | Fecha o marco M1 (ADR 0006 A) |
 
 Implementação (cada spec marca a sua no PR que a conclui):
 
@@ -140,3 +140,4 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que aguardavam d
 | 26/10/2026 | Primeira versão: ADRs 0001 a 0008, questões da S00 à S05, melhorias sem dono e tarefas manuais |
 | 26/10/2026 | Issues #1 a #8 abertas, uma por ADR |
 | 2026-11-24 | ADRs 0001 a 0008 aceitas, ADR 0009 criada e aceita, Constituição 1.0.0 e specs S00 a S05 aprovadas, questões Q e melhorias M10–M24 resolvidas pela opção mais simples |
+| 2026-11-24 | Planos (`plan.md`) e tarefas (`tasks.md`) das specs S03, S04 e S05 escritos |

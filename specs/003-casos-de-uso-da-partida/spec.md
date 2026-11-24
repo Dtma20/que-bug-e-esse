@@ -9,7 +9,7 @@
 | Diagramas de origem | `diagrama_seq_iniciar.pdf`, `diagrama_seq_jogar.pdf`, `Diagrama_comp.pdf` (camada de aplicação e portas) |
 | Decisões que assume | [ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md) e [ADR 0002](../../docs/adr/0002-contrato-da-porta-narrador.md), ambas `Aceita`: esta spec segue a opção A das duas |
 | Melhorias incorporadas | M1, M2, M3 (parte de aplicação), M5, M10, M12 e M18 (cálculo de "já jogados") do [planejamento](../../planejamento-sdd.md) |
-| Plano | Plano e tarefas: ainda não escritos |
+| Plano | [plan.md](plan.md) · Tarefas: [tasks.md](tasks.md) |
 
 ## Contexto
 
