@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -41,7 +41,7 @@ A. Mantém a IA simples e trata o humano como o que ele é: um usuário que envi
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita:** a porta `Narrador` permanece síncrona e existe apenas para o adaptador de IA (`ResponderComIA`, no modo solo). No modo grupo, o narrador humano responde diretamente pelo caso de uso `ResponderPergunta` e o adaptador `NarradorHumano` deixa de existir, eliminando a inversão de camadas (P7) e mantendo H4 isolada em `ResponderComIA`.
 
 ## Impacto
 

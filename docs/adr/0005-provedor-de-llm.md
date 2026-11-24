@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -37,7 +37,12 @@ A, com o provedor escolhido pelos números da bateria da S07, e um teto de token
 
 ## Decisão da equipe
 
-_Pendente._ Além da opção, registrar: provedor e modelo, orçamento mensal, teto de tokens por partida e onde a chave fica guardada (variável de ambiente do servidor; segredo do GitHub só se algum job precisar).
+**Opção A aceita:** API comercial com saída estruturada (JSON Schema), encapsulada pelo serviço stateless `Que-Bug-E-Esse/ai` (ADR 0009).
+
+- **Provedor e modelo padrão:** Google Gemini API (`gemini-2.5-flash`) com `response_schema` nativo, configurável por variável de ambiente `LLM_MODEL` (substituível caso a bateria de referência da S07 aponte modelo com melhor relação acerto/custo).
+- **Orçamento mensal:** teto de US$ 10/mês (ou uso dentro da cota gratuita/estudantil).
+- **Teto de tokens por partida:** máximo de 10.000 tokens totais por partida (com `max_output_tokens` limitado a 256 por chamada), imposto no serviço `ai`.
+- **Guarda da chave:** variável de ambiente `LLM_API_KEY` apenas no servidor do serviço `ai` (fora do repositório; segredo no GitHub Actions somente se algum job manual rodar a bateria real). O fake determinístico (P6) permanece o padrão na CI e em todos os testes de domínio e aplicação.
 
 ## Impacto
 

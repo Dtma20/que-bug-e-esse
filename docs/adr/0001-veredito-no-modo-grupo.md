@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -43,7 +43,7 @@ A. É o arranjo mais simples, reaproveita o mesmo padrão das respostas (humano 
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita:** no modo grupo, o narrador humano dá o veredito pelo caso de uso `JulgarProposta`; no modo solo, a porta `VerificadorDeSolucao` (via serviço `ai`, ADR 0009) avalia a proposta pelo caso de uso `AvaliarComIA`. É a alternativa mais simples, segue o mesmo padrão das respostas às perguntas e evita chamadas de LLM onde há narrador humano.
 
 ## Impacto
 

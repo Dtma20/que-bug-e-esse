@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -35,7 +35,7 @@ Decidir no começo da S10, pelo que a equipe conhece. Até lá, a S06 documenta 
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita (enxuta):** SPA mínima em **TypeScript + Vite + React** (Node 24 / pnpm), usando `fetch` e `WebSocket` nativos do navegador e CSS simples, sem meta-framework (sem SSR) nem gerenciador de estado pesado, hospedada no repositório dedicado `Que-Bug-E-Esse/front` (ADR 0009). É a opção mais simples compatível com a separação de repositórios da organização e com a toolchain já instalada.
 
 ## Impacto
 

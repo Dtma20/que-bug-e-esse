@@ -3,11 +3,11 @@
 | Campo | Valor |
 |---|---|
 | ID | S03 |
-| Status | Rascunho |
+| Status | Aprovada |
 | Depende de | S01 (`GameSession`), S02 (`Enigma`, `Player`, repositórios em memória e seed) |
 | Casos de uso | UC2 Selecionar enigma (sorteio e "já jogados"), UC3 Iniciar partida, UC4 Fazer pergunta, UC5 Responder pergunta, UC6 Propor solução, UC10 Jogar sozinho (caminho da IA, com fakes), UC11 Abandonar partida |
 | Diagramas de origem | `diagrama_seq_iniciar.pdf`, `diagrama_seq_jogar.pdf`, `Diagrama_comp.pdf` (camada de aplicação e portas) |
-| Decisões que assume | [ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md) e [ADR 0002](../../docs/adr/0002-contrato-da-porta-narrador.md), ambas em `Proposta`: esta spec segue a opção A das duas |
+| Decisões que assume | [ADR 0001](../../docs/adr/0001-veredito-no-modo-grupo.md) e [ADR 0002](../../docs/adr/0002-contrato-da-porta-narrador.md), ambas `Aceita`: esta spec segue a opção A das duas |
 | Melhorias incorporadas | M1, M2, M3 (parte de aplicação), M5, M10, M12 e M18 (cálculo de "já jogados") do [planejamento](../../planejamento-sdd.md) |
 | Plano | Plano e tarefas: ainda não escritos |
 

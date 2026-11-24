@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |---|---|
-| Status | Proposta |
+| Status | Aceita |
 | Proposta em | 26/10/2026 |
-| Decidida em | — |
-| Participantes | — |
+| Decidida em | 2026-11-24 |
+| Participantes | Diogo (decisão simplificada) |
 | Substitui / substituída por | — |
 
 ## Contexto
@@ -30,7 +30,7 @@ A, salvo se a maioria da equipe já dominar Spring: o que a equipe conhece pesa 
 
 ## Decisão da equipe
 
-_Pendente._
+**Opção A aceita:** **Ktor** (servidor REST e WebSocket em `interfaces`, composição explícita no `bootstrap`). É a opção mais simples e leve em Kotlin/JVM: corrotinas e WebSocket nativos, inicialização rápida e zero anotações implícitas que arrisquem vazar para o domínio puro (P1).
 
 ## Impacto
 

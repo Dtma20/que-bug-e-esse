@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S01 |
-| Status | Rascunho |
+| Status | Aprovada |
 | Depende de | S00 (módulo `domain` com Kotest rodando) |
 | Casos de uso | UC3 Iniciar partida, UC4 Fazer pergunta, UC5 Responder pergunta, UC6 Propor solução, UC11 Abandonar partida (novo, M10) |
 | Diagramas de origem | `diagrama_classes.pdf` (pacotes `domain.gamesession` e `domain.shared`), `diagrama_estados.pdf` |

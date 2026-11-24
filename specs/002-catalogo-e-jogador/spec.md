@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | ID | S02 |
-| Status | Rascunho |
+| Status | Aprovada |
 | Depende de | S00 (módulos `domain` e `infrastructure` com Kotest). Usa `EnigmaId`, `PlayerId` e `PlayerRef` de `domain.shared`, criados na tarefa 1 da S01; se a S02 vier antes, ela cria esses tipos com as assinaturas do plano da S01 |
 | Casos de uso | UC2 Selecionar enigma (parte de domínio), UC9 Cadastrar/revisar enigma (só o ciclo de vida; telas e caso de uso na S11) |
 | Diagramas de origem | `diagrama_classes.pdf` (pacotes `domain.enigma`, `domain.player` e `domain.shared`), `diagrama_seq_iniciar.pdf` (passos 03 e 04), `diagrama_pacotes.pdf` (`infrastructure.persistence`) |
