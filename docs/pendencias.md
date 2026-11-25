@@ -2,7 +2,7 @@
 
 O que depende da equipe ou de alguém fora do código: decisões, aprovações, questões das specs e configurações manuais. Quem fecha um item atualiza a linha aqui no mesmo PR (passo 4 do [fluxo das ADRs](adr/README.md)).
 
-Situação em 2026-11-24: ADRs 0001 a 0009 aceitas pela opção mais simples, Constituição 1.0.0 aprovada, marco M1 (S00 a S05) concluído em `Que-Bug-E-Esse/back#1` (branch `feat/marco-m1`, 208 testes, 97,64% de cobertura Kover), entregas iniciais abertas em `Que-Bug-E-Esse/ai#1` (70 testes) e `Que-Bug-E-Esse/front#1` (10 testes + build), oito diagramas Mermaid sincronizados em [docs/diagramas/](diagramas/README.md) e specs S06, S07/S08 e S09 escritas e aprovadas; restam a implementação dos marcos M2/M3 e as tarefas manuais de infraestrutura/repositório.
+Situação em 2026-11-24: ADRs 0001 a 0009 aceitas pela opção mais simples, Constituição 1.0.0 aprovada, marco M1 (S00 a S05) concluído em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`, 208 testes, 97,64% Kover) com entregas iniciais em `Que-Bug-E-Esse/ai#1` (70 testes) e `Que-Bug-E-Esse/front#1` (10 testes + build), marcos M2 e M3 concluídos em `Que-Bug-E-Esse/back#2` (`feat/api-ktor-ia-sqlite` — S06, S07/S08 e S09, 246 testes, 97,35% Kover) e `Que-Bug-E-Esse/front#2` (`feat/figma-ui` — S10 telas 01–07 do Figma, 15 testes + verificação visual 1280/375 px), e documentação SDD do marco M4 fechada (specs S11 e S12 aprovadas e diagramas Mermaid sincronizados em [docs/diagramas/](diagramas/README.md)); restam concluir/mesclar as PRs empilhadas do M4 e as tarefas manuais de infraestrutura/repositório.
 
 ## Decisões da equipe (ADRs)
 
@@ -31,9 +31,12 @@ Todas as ADRs 0001 a 0009 foram aceitas em 2026-11-24 pela opção mais simples 
 | [S03 Casos de uso da partida](../specs/003-casos-de-uso-da-partida/spec.md) | Concluída | Escritos | Implementada seguindo ADRs 0001 A, 0002 A e 0007 A em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
 | [S04 Eventos depois de persistir](../specs/004-eventos-apos-persistir/spec.md) | Concluída | Escritos | Implementada com emendas 1 e 2 à S03 em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`); outbox SQLite na S09 |
 | [S05 CLI local](../specs/005-cli-local/spec.md) | Concluída | Escritos | Fecha o marco M1 (ADR 0006 A) em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`) |
-| [S06 API Ktor, salas e identidade](../specs/006-api-ktor-salas/spec.md) | Aprovada | Ainda não escritos | REST + WebSocket, códigos de sala (UC12), tokens HMAC (ADR 0007 A), sigilo P3; consumida por `Que-Bug-E-Esse/front#1` |
-| [S07/S08 Integração com o serviço de IA](../specs/007-008-integracao-ia/spec.md) | Aprovada | Ainda não escritos | Adaptadores HTTP `NarradorIaHttp` e `VerificadorDeSolucaoHttp` para `Que-Bug-E-Esse/ai#1` (`/narrar`, `/verificar`), H4, P3 e M7 |
-| [S09 Persistência em SQLite](../specs/009-persistencia-sqlite/spec.md) | Aprovada | Ainda não escritos | SQLite WAL, Flyway, bloqueio otimista `versao` (M8), `eventos_outbox` (H6) e paridade de contrato (`testFixtures`) |
+| [S06 API Ktor, salas e identidade](../specs/006-api-ktor-salas/spec.md) | Concluída | — | Implementada em `Que-Bug-E-Esse/back#2` (`feat/api-ktor-ia-sqlite`): REST + WebSocket, códigos de sala (UC12), tokens HMAC (ADR 0007 A), sigilo P3 |
+| [S07/S08 Integração com o serviço de IA](../specs/007-008-integracao-ia/spec.md) | Concluída | — | Implementada em `Que-Bug-E-Esse/back#2` (`feat/api-ktor-ia-sqlite`): `NarradorIaHttp` e `VerificadorDeSolucaoHttp` para `Que-Bug-E-Esse/ai#1` (`/narrar`, `/verificar`), H4, P3 e M7 |
+| [S09 Persistência em SQLite](../specs/009-persistencia-sqlite/spec.md) | Concluída | — | Implementada em `Que-Bug-E-Esse/back#2` (`feat/api-ktor-ia-sqlite`): SQLite WAL, Flyway, bloqueio otimista `versao` (M8), `eventos_outbox` (H6) e `testFixtures` |
+| S10 Front-end SPA (Figma) | Concluída | — | Implementada em `Que-Bug-E-Esse/front#1` e `Que-Bug-E-Esse/front#2` (`feat/figma-ui`, telas 01–07 + 24 ícones SVG, ADR 0008 A, P3) |
+| [S11 Geração de enigmas por IA e curadoria](../specs/011-geracao-e-curadoria-ia/spec.md) | Aprovada | — | Marco M4 (UC8/UC9, `POST /gerar`, `GeradorDeEnigmasHttp`, `/api/curadoria/enigmas/*`, M19, P3/H4): implementação em PRs M4 (`ai` `feat/s11-gerar-enigma`, `back` `feat/m4-curadoria-estatisticas`, `front` `feat/m4-curadoria-e2e`) |
+| [S12 Histórico e estatísticas do jogador](../specs/012-historico-e-estatisticas/spec.md) | Aprovada | — | Marco M4 (UC7, M17 `AoEncerrarPartidaAtualizarEstatisticas` em `PartidaResolvida`/`PartidaAbandonada`, SQLite + `/api/perfil` e `/api/historico`): implementação em `back` `feat/m4-curadoria-estatisticas` |
 
 Implementação (cada spec marca a sua no PR que a conclui):
 
@@ -43,9 +46,12 @@ Implementação (cada spec marca a sua no PR que a conclui):
 - [x] S03 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
 - [x] S04 implementada (`Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`)
 - [x] S05 implementada (marco M1: jogo inteiro no terminal — `Que-Bug-E-Esse/back#1`, branch `feat/marco-m1`; serviço de IA e SPA inicial também abertos em `Que-Bug-E-Esse/ai#1` e `Que-Bug-E-Esse/front#1`)
-- [ ] S06 implementada (API Ktor REST + WebSocket, salas e tokens)
-- [ ] S07/S08 implementada (adaptadores HTTP `NarradorIaHttp` e `VerificadorDeSolucaoHttp`)
-- [ ] S09 implementada (persistência SQLite + WAL + Flyway + outbox)
+- [x] S06 implementada (`Que-Bug-E-Esse/back#2`, branch `feat/api-ktor-ia-sqlite` — API Ktor REST + WebSocket, salas e tokens HMAC)
+- [x] S07/S08 implementada (`Que-Bug-E-Esse/back#2`, branch `feat/api-ktor-ia-sqlite` — adaptadores HTTP `NarradorIaHttp` e `VerificadorDeSolucaoHttp` contra `Que-Bug-E-Esse/ai#1`)
+- [x] S09 implementada (`Que-Bug-E-Esse/back#2`, branch `feat/api-ktor-ia-sqlite` — persistência SQLite + WAL + Flyway + bloqueio otimista + outbox)
+- [x] S10 implementada (`Que-Bug-E-Esse/front#1` e `Que-Bug-E-Esse/front#2`, branch `feat/figma-ui` — SPA mínima + adaptação Figma telas 01–07)
+- [ ] S11 mesclada (spec aprovada; em validação/PR no marco M4 em `ai` `feat/s11-gerar-enigma`, `back` `feat/m4-curadoria-estatisticas` e `front` `feat/m4-curadoria-e2e`)
+- [ ] S12 mesclada (spec aprovada; em validação/PR no marco M4 em `back` `feat/m4-curadoria-estatisticas`)
 
 ## Questões das specs (resolvidas)
 
@@ -132,12 +138,13 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que aguardavam d
 
 ## Tarefas manuais
 
-- [ ] **Proteger a `main`** no GitHub nos repositórios da organização (`Que-Bug-E-Esse/back`, `front`, `ai`), exigindo o check da CI após o primeiro push.
+- [ ] **Mesclar as PRs empilhadas** dos marcos M1 a M4 na ordem de base em `Que-Bug-E-Esse/back` (`#1` → `#2` → M4), `Que-Bug-E-Esse/ai` (`#1` → M4), `Que-Bug-E-Esse/front` (`#1` → `#2` → M4) e `CLP` (sem push direto em `main`).
+- [ ] **Proteger a `main`** no GitHub nos repositórios da organização (`Que-Bug-E-Esse/back`, `front`, `ai`), exigindo o check da CI após o merge das PRs.
 - [ ] **Escolher a licença.** Os repositórios públicos precisam de um arquivo `LICENSE` para definir permissões de reutilização.
 - [ ] **Fechar as issues #1 a #8** no GitHub de `CLP` referenciando o commit de aceitação das ADRs 0001–0009.
-- [ ] **Gerar os PDFs** a partir das fontes Mermaid de [docs/diagramas/](diagramas/README.md), quando a equipe quiser atualizar os originais de 14/10/2026 com as decisões das ADRs 0001–0009 e M10–M23.
+- [ ] **Gerar os PDFs** a partir das fontes Mermaid de [docs/diagramas/](diagramas/README.md), quando a equipe quiser atualizar os originais de 14/10/2026 com as decisões das ADRs 0001–0009 e M10–M24.
 - [ ] **Convidar os colaboradores** para os repositórios da organização `Que-Bug-E-Esse`.
-- [ ] **Configurar `LLM_API_KEY`** (ADR 0005 A / ADR 0009): criar a chave da Google Gemini API e guardá-la fora do repositório, apenas no ambiente de execução do serviço `Que-Bug-E-Esse/ai`.
+- [ ] **Configurar `LLM_API_KEY` real para produção** (ADR 0005 A / ADR 0009): criar a chave da Google Gemini API e guardá-la fora do repositório, apenas no ambiente de execução do serviço `Que-Bug-E-Esse/ai` (`LLM_PROVIDER=gemini`).
 
 ## Histórico
 
@@ -148,3 +155,4 @@ Melhorias do [planejamento](../planejamento-sdd.md) (seção 7) que aguardavam d
 | 2026-11-24 | ADRs 0001 a 0008 aceitas, ADR 0009 criada e aceita, Constituição 1.0.0 e specs S00 a S05 aprovadas, questões Q e melhorias M10–M24 resolvidas pela opção mais simples |
 | 2026-11-24 | Planos (`plan.md`) e tarefas (`tasks.md`) das specs S03, S04 e S05 escritos |
 | 2026-11-24 | Marco M1 (S00–S05) concluído em `Que-Bug-E-Esse/back#1` (`feat/marco-m1`), entregas iniciais em `Que-Bug-E-Esse/ai#1` e `Que-Bug-E-Esse/front#1`, diagramas Mermaid sincronizados e specs S06, S07/S08 e S09 aprovadas |
+| 2026-11-24 | Marcos M2 e M3 concluídos (`Que-Bug-E-Esse/back#2` S06–S09 e `Que-Bug-E-Esse/front#2` S10 Figma); fechamento documental do marco M4 com specs S11 e S12 aprovadas e diagramas Mermaid atualizados (P9) |

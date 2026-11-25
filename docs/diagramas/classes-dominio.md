@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | Fonte original | [`diagramas/diagrama_classes.pdf`](../../diagramas/diagrama_classes.pdf), versão de 14/10/2026 |
-| Estado | Atualizado em 2026-11-24 com S01–S04 (emendas 1 e 2 da S03) e ADRs 0001–0002 |
+| Estado | Atualizado em 2026-11-24 com S01–S04 (emendas 1 e 2 da S03), ADRs 0001–0002 e marco M4 (S11 e S12) |
 
 ```mermaid
 classDiagram
@@ -163,11 +163,15 @@ classDiagram
             +stats: EstatisticasJogador [readOnly]
             +criar(id, nome, tipo) Player
             +reconstituir(id, nome, tipo, stats) Player
+            +registrarPartidaResolvida() Player
+            +registrarPartidaAbandonada() Player
         }
         class EstatisticasJogador {
             <<ValueObject>>
             +partidasJogadas: Int
             +partidasResolvidas: Int [0 <= resolvidas <= jogadas]
+            +registrarPartidaResolvida() EstatisticasJogador
+            +registrarPartidaAbandonada() EstatisticasJogador
         }
         class PlayerType {
             <<enumeration>>
@@ -209,7 +213,8 @@ classDiagram
 - **Sigilo por papel (P3, M1, M21):** Kotlin não possui visibilidade de pacote (`~`). `solucaoCompleta` é `val` pública em `ConteudoEnigma` (omitida em `toString()` de `ConteudoEnigma` e `Enigma`); o controle de visibilidade acontece na camada de aplicação por meio de `VisaoInvestigador` (sem solução até estado terminal) e `VisaoNarrador` (com solução).
 - **H5 estendida (S01):** narrador não pode figurar em `investigadores`, sem investigadores duplicados, ao menos 1 investigador no `GRUPO` e exatamente 1 no `SOLO`.
 - **Autoria do veredito (ADR 0001 A, S03 emenda 1):** `aplicarVeredito(autor, veredito, agora)` exige `autor == narrador` (narrador humano no grupo; jogador IA no solo).
-- **`Player` sem comandos em S02 (M17):** atualização de `EstatisticasJogador` por evento entra na S12.
+- **Curadoria e geração de enigmas (S11, M19):** `Enigma` nasce sempre em `RASCUNHO` (`MANUAL` ou `IA`), aceita `revisar` apenas em `RASCUNHO`, transita `RASCUNHO -> PUBLICADO` ou `RASCUNHO / PUBLICADO -> ARQUIVADO`; a porta `GeradorDeEnigmas` e o valor `EnigmaGerado` residem em `domain.enigma.port`.
+- **Atualização de estatísticas em `Player` (S12, M17):** `Player` e `EstatisticasJogador` expõem os métodos puros `registrarPartidaResolvida()` e `registrarPartidaAbandonada()`, preservando imutabilidade e a invariante `0 <= partidasResolvidas <= partidasJogadas`; acionados pelo ouvinte `AoEncerrarPartidaAtualizarEstatisticas` em `PartidaResolvida` e `PartidaAbandonada`.
 
 Notação:
 
